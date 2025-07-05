@@ -120,3 +120,17 @@ python test_endpoints.py
 - `lessonplan://{topic}` → returns a detailed lesson plan
 
 ---
+## 🛠️ Challenges Faced
+
+### 1. Port Conflicts and Server Startup Issues
+- **Issue**: Claude failed to connect due to overlapping port usage or unexpected debug output.
+- **Fix**: Suppressed Flask's startup banner and ensured a consistent, clean JSON response by switching to `FastMCP` instead of Flask.
+
+### 2. EduChain Import Errors
+- **Issue**: Educhain module couldn't be resolved in the MCP project.
+- **Fix**: Installed Educhain using `pip install -e <path>` and ensured it's referenced properly in `pyproject.toml`.
+
+### 3. Claude Not Recognizing Resources
+- **Issue**: Claude didn't detect the `lessonplan://{topic}` resource.
+- **Fix**: Restructured the resource return format using recursive `__dict__` flattening, and simplified types for better parsing.
+
